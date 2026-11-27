@@ -1,0 +1,99 @@
+{
+  "schema": 1,
+  "generated_at": "2026-11-27T17:19:49+00:00",
+  "project": {
+    "title": "SAST Research Platform",
+    "subtitle": "Private-source security research project",
+    "description": "Research-focused security analysis of PHP applications, with inter-file taint analysis and data-flow exploration.",
+    "status": "In development",
+    "stage": "Data-flow architecture",
+    "stack": [
+      "Python",
+      "Tree-sitter",
+      "PostgreSQL",
+      "Docker"
+    ],
+    "milestones": [
+      {
+        "title": "PHP parsing foundation",
+        "status": "completed"
+      },
+      {
+        "title": "Inter-file data flow",
+        "status": "in_progress"
+      },
+      {
+        "title": "Research query interface",
+        "status": "planned"
+      }
+    ]
+  },
+  "metrics": {
+    "commits_seen": 78,
+    "commits_in_main": 62,
+    "active_branches": 3,
+    "last_commit_date": "2026-11-27",
+    "weeks": [
+      {
+        "week": "2026-09-07",
+        "development": 0,
+        "main": 0
+      },
+      {
+        "week": "2026-09-14",
+        "development": 0,
+        "main": 0
+      },
+      {
+        "week": "2026-09-21",
+        "development": 0,
+        "main": 0
+      },
+      {
+        "week": "2026-09-28",
+        "development": 0,
+        "main": 0
+      },
+      {
+        "week": "2026-10-05",
+        "development": 0,
+        "main": 0
+      },
+      {
+        "week": "2026-10-12",
+        "development": 0,
+        "main": 0
+      },
+      {
+        "week": "2026-10-19",
+        "development": 0,
+        "main": 0
+      },
+      {
+        "week": "2026-10-26",
+        "development": 0,
+        "main": 0
+      },
+      {
+        "week": "2026-11-02",
+        "development": 0,
+        "main": 0
+      },
+      {
+        "week": "2026-11-09",
+        "development": 0,
+        "main": 0
+      },
+      {
+        "week": "2026-11-16",
+        "development": 0,
+        "main": 0
+      },
+      {
+        "week": "2026-11-23",
+        "development": 78,
+        "main": 62
+      }
+    ]
+  }
+}
