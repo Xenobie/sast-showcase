@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Quaero — an independent code security research project. Development activity and research milestones.">
+  <title>Quaero / Development</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --white: #ffffff;
+      --ink: #102b60;
+      --blue: #1649b7;
+      --muted: #385b94;
+      --line: #c5d5ef;
+      --light: #eaf1ff;
+      --mid: #8aace8;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: var(--white);
+      font-synthesis: none;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; border-top: 5px solid var(--blue); }
+    main { max-width: 1056px; margin: 0 auto; padding: 36px 36px 28px; }
+    .masthead { display: flex; justify-content: space-between; gap: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--line); font-size: 12px; line-height: 1.5; }
+    .masthead strong { font-weight: 700; }
+    .masthead span { color: var(--muted); text-align: right; }
+    .intro { padding: 39px 0 30px; }
+    h1 { font-size: clamp(54px, 9vw, 94px); line-height: .96; letter-spacing: -.06em; margin: 0 0 12px; color: var(--blue); }
+    .tagline { font-size: 23px; margin: 0 0 20px; font-weight: 600; }
+    .description { max-width: 720px; margin: 0 0 22px; font-size: 16px; line-height: 1.65; }
+    .project-info { display: flex; flex-wrap: wrap; gap: 10px 28px; margin: 0; font-size: 13px; }
+    .project-info div { display: flex; gap: 8px; align-items: baseline; }
+    dt { color: var(--muted); }
+    dd { margin: 0; font-weight: 700; overflow-wrap: anywhere; }
+    section { border-top: 1px solid var(--blue); padding: 22px 0 30px; }
+    .section-heading { display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px; }
+    .section-no { color: var(--blue); font: 12px ui-monospace, monospace; }
+    h2 { font-size: 21px; font-weight: 700; margin: 0; letter-spacing: -.02em; }
+    .metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .metric { display: flex; flex-direction: column; padding: 16px; border-left: 1px solid var(--line); min-width: 0; }
+    .metric:first-child { border-left: 0; padding-left: 0; }
+    .metric dt { order: 2; font-size: 12px; line-height: 1.45; margin-top: 7px; }
+    .metric dd { order: 1; font-size: clamp(20px, 3vw, 33px); color: var(--blue); font-variant-numeric: tabular-nums; letter-spacing: -.04em; }
+    .metric dd.date { font-size: clamp(16px, 2.4vw, 25px); letter-spacing: -.035em; line-height: 1.3; }
+    .chart-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 10px 24px; margin-top: 28px; }
+    h3 { font-size: 14px; margin: 0; }
+    .legend { display: flex; gap: 18px; flex-wrap: wrap; font-size: 12px; }
+    .legend span { display: inline-flex; gap: 7px; align-items: center; }
+    .swatch { display: inline-block; width: 12px; height: 12px; background: var(--blue); }
+    .swatch.main { background: var(--mid); border: 1px solid var(--blue); }
+    .chart-scroll { overflow-x: auto; margin: 8px 0 0; }
+    .chart { display: block; width: 100%; min-width: 620px; height: auto; }
+    .chart text { fill: var(--muted); font-size: 12px; font-family: Arial, Helvetica, sans-serif; font-variant-numeric: tabular-nums; }
+    .chart .value { fill: var(--blue); font-size: 11px; font-weight: 700; }
+    .chart .grid { stroke: var(--line); stroke-width: 1; }
+    .chart .baseline { stroke: var(--blue); }
+    .chart .dev { fill: var(--blue); }
+    .chart .main-bar { fill: var(--mid); stroke: var(--blue); stroke-width: .8; }
+    .note { color: var(--muted); font-size: 12px; line-height: 1.6; margin: 10px 0 0; max-width: 800px; }
+    details { margin-top: 12px; font-size: 12px; color: var(--muted); }
+    summary { cursor: pointer; color: var(--blue); width: fit-content; }
+    summary:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
+    .data-table { margin-top: 12px; max-width: 540px; }
+    table { border-collapse: collapse; width: 100%; font-size: 14px; }
+    th, td { padding: 13px 10px; text-align: left; border-bottom: 1px solid var(--line); }
+    th { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 700; background: var(--light); }
+    td { line-height: 1.4; overflow-wrap: anywhere; }
+    .milestone-no { width: 52px; color: var(--muted); font: 12px ui-monospace, monospace; }
+    .status-cell { width: 155px; white-space: nowrap; }
+    .state { display: inline-flex; align-items: center; gap: 9px; font-size: 12px; font-weight: 700; color: var(--blue); }
+    .state-marker { display: inline-block; width: 10px; height: 10px; border: 1px solid var(--blue); flex-shrink: 0; }
+    .completed .state-marker { background: var(--blue); }
+    .in_progress .state-marker { background: var(--mid); }
+    .planned .state-marker, .unknown .state-marker { background: var(--white); }
+    .stack { display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: baseline; font-size: 13px; padding-top: 20px; }
+    .stack strong { color: var(--muted); font-weight: 400; }
+    .stack span { font-weight: 700; }
+    footer { border-top: 1px solid var(--blue); padding-top: 15px; display: flex; justify-content: space-between; gap: 10px 20px; flex-wrap: wrap; font-size: 12px; color: var(--muted); line-height: 1.5; }
+    #load-status { margin: 12px 0; color: var(--blue); font-size: 13px; }
+    [hidden] { display: none !important; }
+    @media (max-width: 650px) {
+      main { padding: 24px 20px; }
+      .intro { padding: 30px 0 24px; }
+      .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .metric:nth-child(3) { border-left: 0; padding-left: 0; }
+      .metric:nth-child(n+3) { border-top: 1px solid var(--line); }
+      .metric dd { font-size: 27px; }
+      .metric dd.date { font-size: 20px; }
+      .status-cell { width: 112px; }
+      .milestone-no { width: 32px; }
+      th, td { padding: 11px 6px; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <div class="masthead"><strong>QUAERO / PROJECT LOG</strong><span>Independent application security research</span></div>
+  <header class="intro">
+    <h1>Quaero.</h1>
+    <p class="tagline">Ask the code.</p>
+    <p class="description" id="description">A research-oriented platform for exploring source code, program structure and data flow.</p>
+    <dl class="project-info">
+      <div><dt>Status</dt><dd id="status">In development</dd></div>
+      <div><dt>Current focus</dt><dd id="stage">—</dd></div>
+    </dl>
+  </header>
+  <p id="load-status" role="status">Loading published project data…</p>
+  <section aria-labelledby="activity-heading">
+    <div class="section-heading"><span class="section-no">01</span><h2 id="activity-heading">Development activity</h2></div>
+    <dl class="metrics">
+      <div class="metric"><dt>Unique commits observed</dt><dd id="commits">—</dd></div>
+      <div class="metric"><dt>Commits in main</dt><dd id="main-commits">—</dd></div>
+      <div class="metric"><dt>Remote branches</dt><dd id="branches">—</dd></div>
+      <div class="metric"><dt>Last observed commit</dt><dd class="date" id="last">—</dd></div>
+    </dl>
+    <div class="chart-header">
+      <h3>Weekly commits / last 12 weeks</h3>
+      <div class="legend"><span><i class="swatch" aria-hidden="true"></i>All observed commits</span><span><i class="swatch main" aria-hidden="true"></i>In main</span></div>
+    </div>
+    <div class="chart-scroll" tabindex="0" aria-label="Scrollable weekly activity chart">
+      <svg id="graph" class="chart" viewBox="0 0 900 228" role="img" aria-labelledby="chart-title chart-desc">
+        <title id="chart-title">Weekly commit activity</title><desc id="chart-desc">No activity data loaded yet.</desc>
+        <g id="plot"></g>
+      </svg>
+    </div>
+    <p class="note">Unique non-merge commits, grouped by committer date (UTC). Main is a subset of the observed history, not an additional total. Previously observed commits remain counted after branch deletion.</p>
+    <details id="weekly-details" hidden><summary>View weekly data</summary><table class="data-table"><thead><tr><th scope="col">Week starting (UTC)</th><th scope="col">Observed</th><th scope="col">In main</th></tr></thead><tbody id="weekly-data"></tbody></table></details>
+  </section>
+  <section aria-labelledby="progress-heading">
+    <div class="section-heading"><span class="section-no">02</span><h2 id="progress-heading">Research progress</h2></div>
+    <table aria-label="Research milestones">
+      <thead><tr><th scope="col">No.</th><th scope="col">Milestone</th><th scope="col">Status</th></tr></thead>
+      <tbody id="milestones"><tr><td colspan="3">Awaiting published milestones.</td></tr></tbody>
+    </table>
+    <div class="stack" id="stack" hidden><strong>Technology</strong></div>
+    <p class="note">Milestones are maintained by the project author. Commit counts measure activity, not completion of research.</p>
+  </section>
+  <footer><span>Private-source project. Only selected metadata and aggregate activity are published.</span><span id="updated">Last export: —</span></footer>
+</main>
+<script>
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const set = (id, value) => { $(id).textContent = value ?? '—'; };
+  const integer = value => Number.isSafeInteger(value) && value >= 0 ? value.toLocaleString('en-US') : '—';
+  const count = value => Number.isSafeInteger(value) && value >= 0 ? value : 0;
+  const el = (tag, text, cls) => {
+    const node = document.createElement(tag);
+    if (text !== undefined) node.textContent = text;
+    if (cls) node.className = cls;
+    return node;
+  };
+  const svg = (tag, attributes, text) => {
+    const node = document.createElementNS('http://www.w3.org/2000/svg', tag);
+    for (const [key, value] of Object.entries(attributes)) node.setAttribute(key, value);
+    if (text !== undefined) node.textContent = text;
+    return node;
+  };
+  function drawGraph(weeks) {
+    const plot = $('plot'); plot.replaceChildren();
+    const table = $('weekly-data'); table.replaceChildren();
+    if (!weeks.length) {
+      plot.append(svg('text', {x: 450, y: 112, 'text-anchor': 'middle'}, 'No weekly data published.'));
+      $('weekly-details').hidden = true;
+      set('chart-desc', 'No weekly data published.');
+      return;
+    }
+    const left = 43, right = 892, top = 27, bottom = 194;
+    const peak = Math.max(1, ...weeks.flatMap(w => [count(w.development), count(w.main)]));
+    const step = Math.max(1, Math.ceil(peak / 4));
+    const limit = step * 4;
+    const width = (right - left) / weeks.length;
+    const height = n => (bottom - top) * n / limit;
+    for (let i = 0; i <= 4; i++) {
+      const val = i * step, y = bottom - height(val);
+      plot.append(svg('line', {x1: left, y1: y, x2: right, y2: y, class: i ? 'grid' : 'grid baseline'}));
+      plot.append(svg('text', {x: left - 8, y: y + 4, 'text-anchor': 'end'}, val));
+    }
+    for (let i = 0; i < weeks.length; i++) {
+      const w = weeks[i], center = left + width * (i + .5);
+      const bw = Math.min(20, width * .30);
+      const values = [count(w.development), count(w.main)];
+      values.forEach((value, j) => {
+        const x = center + (j ? 2 : -bw - 2), h = height(value);
+        if (value) {
+          const bar = svg('rect', {x, y: bottom - h, width: bw, height: h, class: j ? 'main-bar' : 'dev'});
+          bar.append(svg('title', {}, `${w.week}: ${j ? 'In main' : 'Observed'} — ${value}`));
+          plot.append(bar);
+          plot.append(svg('text', {x: x + bw / 2, y: bottom - h - 5, 'text-anchor': 'middle', class: 'value'}, value));
+        }
+      });
+      plot.append(svg('text', {x: center, y: bottom + 20, 'text-anchor': 'middle'}, String(w.week).slice(5)));
+      const tr = el('tr');
+      tr.append(el('td', w.week), el('td', values[0]), el('td', values[1]));
+      table.append(tr);
+    }
+    $('weekly-details').hidden = false;
+    set('chart-desc', 'Weekly comparison of all observed non-merge commits and those currently reachable from main. Exact values are available in the weekly data table.');
+  }
+  function drawProgress(project) {
+    const body = $('milestones'); body.replaceChildren();
+    const states = {completed: 'Completed', in_progress: 'In progress', planned: 'Planned'};
+    const milestones = Array.isArray(project.milestones) ? project.milestones : [];
+    if (!milestones.length) {
+      const tr = el('tr'), td = el('td', 'No milestones published.'); td.colSpan = 3; tr.append(td); body.append(tr);
+    }
+    milestones.forEach((item, index) => {
+      const state = Object.hasOwn(states, item.status) ? item.status : 'unknown';
+      const tr = el('tr'), statusCell = el('td', undefined, 'status-cell');
+      const label = el('span', undefined, `state ${state}`);
+      const marker = el('i', undefined, 'state-marker'); marker.setAttribute('aria-hidden', 'true');
+      label.append(marker, document.createTextNode(states[state] ?? 'Not specified'));
+      statusCell.append(label);
+      tr.append(el('td', String(index + 1).padStart(2, '0'), 'milestone-no'), el('td', item.title ?? '—'), statusCell);
+      body.append(tr);
+    });
+    const stack = $('stack'); stack.replaceChildren(el('strong', 'Technology'));
+    const technologies = Array.isArray(project.stack) ? project.stack : [];
+    technologies.forEach(name => stack.append(el('span', name)));
+    stack.hidden = !technologies.length;
+  }
+  async function load() {
+    try {
+      const response = await fetch('./activity.json', {cache: 'no-store'});
+      if (!response.ok) throw new Error('HTTP ' + response.status);
+      const data = await response.json();
+      if (data.schema !== 1 || !data.project || !data.metrics) throw new Error('Unsupported activity data');
+      const {project, metrics} = data;
+      if (project.description) set('description', project.description);
+      set('status', project.status ?? 'In development'); set('stage', project.stage);
+      set('commits', integer(metrics.commits_seen)); set('main-commits', integer(metrics.commits_in_main));
+      set('branches', integer(metrics.active_branches)); set('last', metrics.last_commit_date);
+      drawGraph(Array.isArray(metrics.weeks) ? metrics.weeks : []);
+      drawProgress(project);
+      const updated = new Date(data.generated_at);
+      if (!Number.isNaN(updated.getTime())) set('updated', 'Last export: ' + updated.toISOString().slice(0, 16).replace('T', ' ') + ' UTC');
+      $('load-status').hidden = true;
+    } catch (error) {
+      set('load-status', 'Published activity is unavailable. Check that activity.json is present and valid.');
+      drawGraph([]);
+    }
+  }
+  load();
+</script>
+</body>
+</html>
