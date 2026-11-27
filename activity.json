@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "generated_at": "2026-11-27T18:17:16+00:00",
+  "generated_at": "2026-11-27T18:27:18+00:00",
   "project": {
     "title": "SAST Research Platform",
     "subtitle": "Private-source security research project",
@@ -10,27 +10,130 @@
     "stack": [
       "Python",
       "Tree-sitter",
-      "PostgreSQL",
-      "Docker"
+      "PostgreSQL"
     ],
     "milestones": [
       {
-        "title": "PHP parsing foundation",
+        "title": "PHP parsing research",
         "status": "completed"
       },
       {
-        "title": "Inter-file data flow",
+        "title": "PostgreSQL storage research",
+        "status": "completed"
+      },
+      {
+        "title": "CST Storage v1.0",
+        "status": "completed"
+      },
+      {
+        "title": "CST Storage audit and refactoring",
+        "status": "completed"
+      },
+      {
+        "title": "Query Engine research",
+        "status": "completed"
+      },
+      {
+        "title": "Query Engine v1.0",
         "status": "in_progress"
       },
       {
-        "title": "Research query interface",
+        "title": "CST Explorer and research interface",
+        "status": "planned"
+      },
+      {
+        "title": "MVP release",
+        "status": "planned"
+      },
+      {
+        "title": "CLI and CI/CD integration",
+        "status": "planned"
+      },
+      {
+        "title": "Intermediate representation research",
+        "status": "planned"
+      },
+      {
+        "title": "Intermediate representation engine",
+        "status": "planned"
+      },
+      {
+        "title": "Symbol and scope resolution",
+        "status": "planned"
+      },
+      {
+        "title": "Control flow analysis",
+        "status": "planned"
+      },
+      {
+        "title": "Call graph construction",
+        "status": "planned"
+      },
+      {
+        "title": "Data flow analysis",
+        "status": "planned"
+      },
+      {
+        "title": "PHP type inference",
+        "status": "planned"
+      },
+      {
+        "title": "Alias and reference analysis",
+        "status": "planned"
+      },
+      {
+        "title": "Dynamic dispatch resolution",
+        "status": "planned"
+      },
+      {
+        "title": "Interprocedural analysis",
+        "status": "planned"
+      },
+      {
+        "title": "Inter-file data flow analysis",
+        "status": "planned"
+      },
+      {
+        "title": "Taint analysis engine",
+        "status": "planned"
+      },
+      {
+        "title": "Semantic entity engine",
+        "status": "planned"
+      },
+      {
+        "title": "Semantic query language",
+        "status": "planned"
+      },
+      {
+        "title": "WordPress semantic analysis plugin",
+        "status": "planned"
+      },
+      {
+        "title": "Semantic research interface",
+        "status": "planned"
+      },
+      {
+        "title": "Advanced CI/CD and regression analysis",
+        "status": "planned"
+      },
+      {
+        "title": "PHP framework plugin ecosystem",
+        "status": "planned"
+      },
+      {
+        "title": "Production release v1.0",
+        "status": "planned"
+      },
+      {
+        "title": "Multi-language analysis support",
         "status": "planned"
       }
     ]
   },
   "metrics": {
-    "commits_seen": 79,
-    "commits_in_main": 62,
+    "commits_seen": 83,
+    "commits_in_main": 65,
     "active_branches": 3,
     "last_commit_date": "2026-11-27",
     "weeks": [
@@ -91,8 +194,8 @@
       },
       {
         "week": "2026-11-23",
-        "development": 79,
-        "main": 62
+        "development": 83,
+        "main": 65
       }
     ]
   }
