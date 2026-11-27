@@ -14,7 +14,7 @@ The initial development focuses on PHP applications.
 
 Quaero is an independent, private-source project under active development.
 
-[Development dashboard →](https://xenobie.github.io/quaero/)
+[Development dashboard →](https://xenobie.github.io/quaero-showcase/)
 
 ## Technology
 
